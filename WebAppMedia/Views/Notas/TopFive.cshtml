@@ -1,0 +1,76 @@
+﻿@model IEnumerable<WebAppMedia.Models.Nota>
+
+@{
+    ViewData["Title"] = "Os Cinco Melhores";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+
+<table class="table table-hover">
+    <thead class=" thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Aluno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Turma)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Media)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SituacaoFinal)
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @*@foreach (var item in Model)*@
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.ElementAt(i).Aluno.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.ElementAt(i).Turma.Curso)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => Model.ElementAt(i).Media)
+                </td>
+                <td>
+                    @if (i == 0)
+                    {
+                        Model.ElementAt(i).SituacaoFinal = "Campeão";
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).SituacaoFinal)
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(modelItem => Model.ElementAt(i).SituacaoFinal)
+                    }
+                </td>
+                <td class="text-right">
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@Model.ElementAt(i).Id"><spam class="fa fa-search"></spam></a>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.ElementAt(i).Id"><spam class="fa fa-pencil-alt"></spam></a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.ElementAt(i).Id"><spam class="fa fa-trash"></spam></a>
+
+                </td>
+            </tr>
+
+        }
+    </tbody>
+
+
+</table>
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <a class="btn btn-info" asp-action="Index">Voltar</a>
+        </div>
+    </div>
+</div>

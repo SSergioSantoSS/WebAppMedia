@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WebAppMedia.Models.Nota>
+
+@{
+    ViewData["Title"] = "Lista das Notas";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-info" asp-action="Create">Cadastrar nova Nota</a>
+    <a class="btn btn-info" asp-action="TopFive">Os Cinco Melhores</a>
+</p>
+<table class="table table-hover">
+    <thead class=" thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Aluno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Turma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nota01)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nota02)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nota03)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Media)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SituacaoFinal)
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Aluno.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Turma.Curso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nota01)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nota02)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nota03)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Media)
+                </td>
+                <td>
+                    
+                    @Html.DisplayFor(modelItem => item.SituacaoFinal)
+                </td>
+
+
+                <td class="text-right">
+                    <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><spam class="fa fa-search"></spam></a>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><spam class="fa fa-pencil-alt"></spam></a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><spam class="fa fa-trash"></spam></a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
